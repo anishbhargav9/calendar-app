@@ -15,8 +15,13 @@ const Calendar = () => {
   useEffect(() => {
     // Load events from JSON file
     fetch('/events.json')
-      .then((response) => response.json())
-      .then((data) => {
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then((data) => { 
         setEvents(data);
         setLoading(false);
       })
