@@ -13,15 +13,15 @@ const Calendar = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Load events from JSON file
-    fetch('./events.json')
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    return response.json();
-  })
-  .then((data) => { 
+    // Load events from JSON file in public folder
+    fetch('/calendar-app/events.json')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
         setEvents(data);
         setLoading(false);
       })
